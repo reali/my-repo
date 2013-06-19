@@ -40,7 +40,7 @@ $repos = $client->api('repo')->find($search, array('language' => $language));
                     <?php
                     for ($i = 0; $i < 4; $i++) {
                         echo "  <table width='100%' align='center'  CELLPADDING=10 ><tr>
-                            <td width='30%'><h3><a href='repo_info.php?repo=" . $repos[repositories][$i][name] . "'>" . $repos[repositories][$i][name] . "</a></h3></td>
+                            <td width='30%'><h3><a href='repo_info.php?repo=" . $repos[repositories][$i][name] . "&owner=" . $repos[repositories][$i][owner] . "'>" . $repos[repositories][$i][name] . "</a></h3></td>
                                 <td><a href='".$repos[repositories][$i][homepage]."' target='blank'>" . $repos[repositories][$i][homepage] . " </a></td><td width='20%'><a href='user_info?user=" . $repos[repositories][$i][owner] . "'>" . $repos[repositories][$i][owner] . "</a></td>
                         </tr>
                         <tr>

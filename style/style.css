@@ -63,8 +63,10 @@ input[type=button], input[type=button]:hover {
 
 }
 #rep{
+  
     font-family: Verdana;
     font-size:  larger;
+margin: auto;
     color:  slategrey;
 }
 a{
@@ -102,4 +104,12 @@ table{
     min-height: 100px;
     margin: auto;
     
+}
+#table_inf{
+    background-color: #fefefe;
+   min-width: 40%;
+   width: 50%
+    height: auto;
+    min-height: 200px;
+     margin: auto;
 }
