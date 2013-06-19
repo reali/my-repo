@@ -17,12 +17,12 @@ body{
     height: 60px;
     background-color:  #96e6bc;
     padding-top: 15px;
-    
+   
 }
 #search_form{
     float: right;
     margin-right: 5px;
-    margin-right: 5px;
+  padding-top: 5px;
 }
 input[type=button], input[type=button]:hover {
     position:relative;
@@ -95,4 +95,11 @@ table{
 }
 #index_table{
     background-color: #fefefe;
+}
+#user{
+    width: 40%;
+    height: auto;
+    min-height: 100px;
+    margin: auto;
+    
 }

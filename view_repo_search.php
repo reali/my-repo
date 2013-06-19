@@ -19,7 +19,7 @@ $repos = $client->api('repo')->find($search, array('language' => $language));
         <div id="main">
 
             <div id="search">
-                <div style='float: left;'><h3> GitHub Browser >> Search</h3></div>
+                <div  style='float: left;'><h3>GitHub Browser >> Search</h3></div>
                 <div id="search_form">
                     <?php require_once 'blocks/form.php'; ?>
                 </div>
@@ -41,7 +41,7 @@ $repos = $client->api('repo')->find($search, array('language' => $language));
                     for ($i = 0; $i < 4; $i++) {
                         echo "  <table width='100%' align='center'  CELLPADDING=10 ><tr>
                             <td width='30%'><h3><a href='repo_info.php?repo=" . $repos[repositories][$i][name] . "'>" . $repos[repositories][$i][name] . "</a></h3></td>
-                                <td><a href='http://". $repos[repositories][$i][homepage] ."'>". $repos[repositories][$i][homepage] ." </a></td><td width='20%'><a href='user_info?user=". $repos[repositories][$i][owner] . "'>". $repos[repositories][$i][owner] . "</a></td>
+                                <td><a href='".$repos[repositories][$i][homepage]."' target='blank'>" . $repos[repositories][$i][homepage] . " </a></td><td width='20%'><a href='user_info?user=" . $repos[repositories][$i][owner] . "'>" . $repos[repositories][$i][owner] . "</a></td>
                         </tr>
                         <tr>
                             <td>" . $repos[repositories][$i][description] . "</td>
@@ -51,21 +51,9 @@ $repos = $client->api('repo')->find($search, array('language' => $language));
                          </tr>  </table>";
                     }
                     ?>
-
                 </div>
-
-                <?php
-                print_r($repos[repositories]);
-                echo $repos[repositories][0][username];
-                ?>
-
-
-
             </div>
-
-
         </div>
-
 
     </body>
 </html>
