@@ -67,13 +67,14 @@ input[type=button], input[type=button]:hover {
     font-family: Verdana;
     font-size:  larger;
 margin: auto;
-    color:  slategrey;
+color:  #5d5d5d;
 }
 a{
     color:  slategrey;
+
 }
 a:visited{
-    color:  violet;
+    color:  #828282;
 }
 #repo_search{
     min-height:100%;
@@ -85,7 +86,7 @@ a:visited{
     height: auto;
     min-height: 100px;
     margin: auto;
-    
+    margin-bottom: 15px;
 }
 table{
     margin-bottom: 10px;
@@ -108,7 +109,7 @@ table{
 #table_inf{
     background-color: #fefefe;
    min-width: 40%;
-   width: 50%
+   width: 50%;
     height: auto;
     min-height: 200px;
      margin: auto;
