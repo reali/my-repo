@@ -84,7 +84,7 @@ $contributors = $client->api('repo')->contributors($owner, $repo_inf);
                             <?php
                             $a = count($contributors);
                             for ($i = 0; $i < $a; $i++) {
-
+                          if($i<9){
                                 echo "<tr>
                                 <td width='35%'><a href='user_info.php?user=" . $contributors[$i]['login'] . "'>" . $contributors[$i]['login'] . "</a>
                                 </td>
@@ -93,6 +93,7 @@ $contributors = $client->api('repo')->contributors($owner, $repo_inf);
                                    <a id='like' class='like-Unlike' href=' '>Like</a>
                                 </td>
                             </tr>";
+                          }
                             }
                             ?>
                         </table>      

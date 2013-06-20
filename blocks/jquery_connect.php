@@ -1,6 +1,4 @@
-
-
-  <script src="http://www.google.com/jsapi"></script>
+<script src="http://www.google.com/jsapi"></script>
         <script type="text/javascript">
             // Подключение jQuery
             google.load('jquery', '1.4.2');

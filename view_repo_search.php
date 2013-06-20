@@ -3,7 +3,9 @@
 require 'blocks/auth.php';
 $language = $_POST['lang'];
 $search = $_POST['search'];
+
 $repos = $client->api('repo')->find($search, array('language' => $language));
+
 ?>
 
 <html>
@@ -19,7 +21,7 @@ $repos = $client->api('repo')->find($search, array('language' => $language));
         <div id="main">
 
             <div id="search">
-                <div  style='float: left;'><h3>GitHub Browser >><a href='index.php'> Main</a>>><a href='#'> Search</a> </h3></div>
+                <div  style='float: left;'><h3>GitHub Browser >><a href='index.php'> Main</a>>> Search </h3></div>
                 <div id="search_form">
                     <?php require_once 'blocks/form.php'; ?>
                 </div>
@@ -43,7 +45,8 @@ $repos = $client->api('repo')->find($search, array('language' => $language));
                     if (!empty($repos[repositories])) {
                         $a = count($repos[repositories]);
                         for ($i = 0; $i < $a; $i++) {
-                            echo "  <table width='100%' align='center'  CELLPADDING=10 ><tr>
+                            if($i<9){
+                                echo "  <table width='100%' align='center'  CELLPADDING=10 ><tr>
                             <td width='30%'><h3><a href='repo_info.php?repo=" . $repos[repositories][$i][name] . "&owner=" . $repos[repositories][$i][owner] . "'>" . $repos[repositories][$i][name] . "</a></h3></td>
                                 <td><a href='" . $repos[repositories][$i][homepage] . "' target='blank'>" . $repos[repositories][$i][homepage] . " </a></td><td width='20%'><a href='user_info?user=" . $repos[repositories][$i][owner] . "'>" . $repos[repositories][$i][owner] . "</a></td>
                         </tr>
@@ -52,7 +55,8 @@ $repos = $client->api('repo')->find($search, array('language' => $language));
                         </tr>
                         <tr>
                             <td>watchers : " . $repos[repositories][$i][watchers] . "</td><td>forks : " . $repos[repositories][$i][forks] . "</td><td></td><td  align='center' width='10%' ROWSPAN='3'> <span><a  class='like-Unlike' href=' '>Like</a></span></td>
-                         </tr>  </table>";
+                         </tr>  </table><br>";
+                            }
                         }
                     }
                     ?>
