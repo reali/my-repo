@@ -1,5 +1,6 @@
 <?php
-$username = $_GET['user'];
+$username = trim($_GET[user]);
+
 require 'blocks/auth.php';
 $user = $client->api('user')->show($username);
 
@@ -18,7 +19,7 @@ $user = $client->api('user')->show($username);
         <div id="main">
 
             <div id="search">
-                <div  style='float: left;'><h3>GitHub Browser >><a href='index.php'> Main</a> >>User Info</h3></div>
+                <div  style='float: left;'><h3 style="margin-left: 5px;">GitHub Browser >><a href='index.php'> Main</a> >>User Info</h3></div>
                 <div id="search_form">
                     <?php require_once 'blocks/form.php'; ?>
                 </div>

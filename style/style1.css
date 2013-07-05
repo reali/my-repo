@@ -1,0 +1,24 @@
+
+
+.vote_down{
+	
+	height: 55px;
+	float: left;
+	width: 55px;
+	float: right;
+}
+
+.vote_up{
+	
+	height: 55px;
+	width: 55px;
+	float: left;
+}
+.section .img{
+	text-align: center;
+}
+.section .img img{
+	max-height: 40px;
+	max-width: 40px;
+}
+

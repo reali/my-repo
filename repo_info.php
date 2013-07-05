@@ -2,23 +2,31 @@
 $repo_inf = $_GET['repo'];
 $owner = $_GET['owner'];
 require 'blocks/auth.php';
+include('connect.php');
 $repo = $client->api('repo')->show($owner, $repo_inf);
 $contributors = $client->api('repo')->contributors($owner, $repo_inf);
+foreach ($contributors as $row) {
+
+    $sql[] = '(' . $row['id'] . '," ' . mysql_real_escape_string($row['login']) . '")';
+}
+
+mysql_query('INSERT INTO users (user_id, name) VALUES ' . implode(',', $sql));
 ?>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <?php include_once 'blocks/jquery_connect.php'; ?>
-        <title>MobiDev </title>
+        <title>MobiDev</title>
+        <script type='text/javascript' src='js/jquery-1.8.1.js'></script>
+        <script type='text/javascript' src='js/script.js'></script>
         <link rel="stylesheet" type="text/css" href="style/style.css">
-
+        <link rel="stylesheet" type="text/css" href="style/style1.css">
     </head>
     <body>
 
         <div id="main">
 
             <div id="search">
-                <div style='float: left;'><h3> GitHub Browser >><a href='index.php'> Main</a> >>Repo Info</h3></div>
+                <div style='float: left;'><h3 style="margin-left: 5px;"> GitHub Browser >><a href='index.php'> Main</a> >>Repo Info</h3></div>
                 <div id="search_form">
                     <?php require_once 'blocks/form.php'; ?>
                 </div>
@@ -82,18 +90,34 @@ $contributors = $client->api('repo')->contributors($owner, $repo_inf);
                         <h2>Contributors : </h2>
                         <table id='index_table' >
                             <?php
+                   
+                                $result = mysql_query("SELECT vote_up,
+vote_down FROM votes WHERE user_id");
+                            
+                            while ($row = mysql_fetch_array($result)) {
+                                $item[] = $row;
+                            }
+                            
                             $a = count($contributors);
                             for ($i = 0; $i < $a; $i++) {
-                          if($i<9){
-                                echo "<tr>
-                                <td width='35%'><a href='user_info.php?user=" . $contributors[$i]['login'] . "'>" . $contributors[$i]['login'] . "</a>
-                                </td>
-                                
-                                <td width='20%' align='center'>
-                                   <a id='like' class='like-Unlike' href=' '>Like</a>
+                                if ($i < 8) {
+                                    echo "<tr>
+                                <div id='nam'><td  align='center'  width='35%'><a    href='user_info.php?user=" . $contributors[$i][login] . "' >" . $contributors[$i][login] . "</a></div>
+                               <div class='section' >
+                        <div class='vote_up right' id='" . $contributors[$i][id] . "'>
+                            <span class='yes_value'>" . (!empty($item[$i]['vote_up']) ? $item[$i]['vote_up'] : "0") . "</span>
+                                <img style='cursor: pointer;' src='img/vote_up.png' alt='vote_up' class='vote_up_image'>
+                          
+                            </div>
+                           <div class='vote_down left' id='" . $contributors[$i][id] . "'>
+                            <span class='no_value'>" . (!empty($item[$i]['vote_down']) ? $item[$i]['vote_down'] : "0") . "</span> 
+                                <img style='cursor: pointer;' src='img/vote_down.png' alt='vote_down' class='vote_down_image'>
+                           
+                            </div>
+                            </div>
                                 </td>
                             </tr>";
-                          }
+                                }
                             }
                             ?>
                         </table>      
