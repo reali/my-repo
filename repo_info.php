@@ -108,25 +108,16 @@ mysql_query('INSERT INTO users (user_id, name) VALUES ' . implode(',', $sql));
 
 //echo $id;
 //print_r($item);
-$e = true;
-
-if (mysql_num_rows($result)==0) {
-	$e = false;
-}
-
+                            
 $up;
 $down;
 
-if($e) {
+if (mysql_num_rows($result)==0) {
+	$up=0;
+        $down=0;
+} else {
     $up=$item[0]['vote_up'];
-} else {
-    $up=0;
-}
-
-if($e) {
     $down=$item[0]['vote_down'];
-} else {
-    $down=0;
 }
 
 unset($item);
