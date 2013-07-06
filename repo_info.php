@@ -90,41 +90,37 @@ mysql_query('INSERT INTO users (user_id, name) VALUES ' . implode(',', $sql));
                         <h2>Contributors : </h2>
                         <table id='index_table' >
                             <?php
-                   
-                                
                             //print_r($contributors);
                             $a = count($contributors);
                             for ($i = 0; $i < $a; $i++) {
                                 if ($i < 8) {
-				$id = $contributors[$i][id];
-				$result = mysql_query("SELECT vote_up, vote_down FROM votes WHERE user_id=$id");
-                            
-                                
+                                    $id = $contributors[$i][id];
+                                    $result = mysql_query("SELECT vote_up, vote_down FROM votes WHERE user_id=$id");
 
-                            while ($row = mysql_fetch_array($result)) {
-                                $item[] = $row;
-                            }
-                            
+                                    if (!$result) {
+                                        die('Неверный запрос: ' . mysql_error());
+                                    }
 
-//echo $id;
-//print_r($item);
-                            
-$up;
-$down;
+                                    while ($row = mysql_fetch_array($result)) {
+                                        $item[] = $row;
+                                    }
 
-if (mysql_num_rows($result)==0) {
-	$up=0;
-        $down=0;
-} else {
-    $up=$item[0]['vote_up'];
-    $down=$item[0]['vote_down'];
-}
 
-unset($item);
+                                    //echo $id;
+                                    //print_r($item);
 
-				if (!$result) {
-    					die('Неверный запрос: ' . mysql_error());
-				}
+                                    $up;
+                                    $down;
+
+                                    if (mysql_num_rows($result) == 0) {
+                                        $up = 0;
+                                        $down = 0;
+                                    } else {
+                                        $up = $item[0]['vote_up'];
+                                        $down = $item[0]['vote_down'];
+                                    }
+
+                                    unset($item);
 
 
                                     echo "<tr>
