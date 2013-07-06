@@ -91,26 +91,61 @@ mysql_query('INSERT INTO users (user_id, name) VALUES ' . implode(',', $sql));
                         <table id='index_table' >
                             <?php
                    
-                                $result = mysql_query("SELECT vote_up,
-vote_down FROM votes WHERE user_id");
+                                
+                            //print_r($contributors);
+                            $a = count($contributors);
+                            for ($i = 0; $i < $a; $i++) {
+                                if ($i < 8) {
+				$id = $contributors[$i][id];
+				$result = mysql_query("SELECT vote_up, vote_down FROM votes WHERE user_id=$id");
                             
+                                
+
                             while ($row = mysql_fetch_array($result)) {
                                 $item[] = $row;
                             }
                             
-                            $a = count($contributors);
-                            for ($i = 0; $i < $a; $i++) {
-                                if ($i < 8) {
+
+//echo $id;
+//print_r($item);
+$e = true;
+
+if (mysql_num_rows($result)==0) {
+	$e = false;
+}
+
+$up;
+$down;
+
+if($e) {
+    $up=$item[0]['vote_up'];
+} else {
+    $up=0;
+}
+
+if($e) {
+    $down=$item[0]['vote_down'];
+} else {
+    $down=0;
+}
+
+unset($item);
+
+				if (!$result) {
+    					die('Неверный запрос: ' . mysql_error());
+				}
+
+
                                     echo "<tr>
                                 <div id='nam'><td  align='center'  width='35%'><a    href='user_info.php?user=" . $contributors[$i][login] . "' >" . $contributors[$i][login] . "</a></div>
                                <div class='section' >
                         <div class='vote_up right' id='" . $contributors[$i][id] . "'>
-                            <span class='yes_value'>" . (!empty($item[$i]['vote_up']) ? $item[$i]['vote_up'] : "0") . "</span>
+                            <span class='yes_value'>" . $up . "</span>
                                 <img style='cursor: pointer;' src='img/vote_up.png' alt='vote_up' class='vote_up_image'>
                           
                             </div>
                            <div class='vote_down left' id='" . $contributors[$i][id] . "'>
-                            <span class='no_value'>" . (!empty($item[$i]['vote_down']) ? $item[$i]['vote_down'] : "0") . "</span> 
+                            <span class='no_value'>" . $down . "</span> 
                                 <img style='cursor: pointer;' src='img/vote_down.png' alt='vote_down' class='vote_down_image'>
                            
                             </div>
